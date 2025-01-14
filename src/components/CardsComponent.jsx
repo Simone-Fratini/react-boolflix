@@ -1,22 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { MainContext } from "../context/MainContext";
 
 function CardsComponent() {
     const { movies, loading, error } = useContext(MainContext);
     const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
+    const scrollContainer = useRef(null);
+
     if (loading) return <p className="text-white">Loading...</p>; // to do! work on loading spinner
-    if (error) return <p className="text-red-500">{error}</p>; 
+    if (error) return <p className="text-red-500">{error}</p>;
+
+    const scrollLeft = () => {
+        scrollContainer.current.scrollBy({ left: -300, behavior: "smooth" });
+    };
+
+    const scrollRight = () => {
+        scrollContainer.current.scrollBy({ left: 300, behavior: "smooth" });
+    };
 
     return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 "> {/* uso grid di tailwind per imparare ad utilizzarlo */}
-                {movies.map((movie) => (
-                    <div key={movie.id}>
-                        <img src={IMG_PATH + movie.poster_path} alt="movie image" className="rounded-lg" />
-                    </div>
-                ))}
+        <div className="relative">
+            {/* Left scroll button */}
+            <button className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-5 rounded-r-lg hover:bg-black/80 z-10" onClick={scrollLeft} >
+                &larr;
+            </button>
+
+            {/* Horizontal scrolling container */}
+            <div className="overflow-x-auto scrollbar-hide" ref={scrollContainer}>
+                <div className="flex space-x-6 py-4">
+                    {movies.map((movie) => (
+                        <div key={movie.id} className="shrink-0 w-64">
+                            <img src={IMG_PATH + movie.poster_path} alt="movie image" className="rounded-lg" />
+                        </div>
+                    ))}
+                </div>
             </div>
+
+            {/* Right scroll button */}
+            <button className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-5 rounded-l-lg hover:bg-black/80 z-10" onClick={scrollRight}>
+                &rarr;
+            </button>
         </div>
     );
 }

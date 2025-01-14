@@ -49,7 +49,7 @@ const MainContextProvider = ({ children }) => {
             .then(([resMovie, resSeries]) => {
                 setMovies(resMovie.data.results);
                 setSeries(resSeries.data.results);
-                console.log(movies, series);
+                console.log(movies);
             })
             .catch((err) => {
                 console.error("error:", err);
