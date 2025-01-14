@@ -10,6 +10,9 @@ const MainContextProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("all");
+
+    const API_KEY = import.meta.env.VITE_API_KEY;
+    const API_URL = import.meta.env.VITE_API_URL;
     
     
     const contextValue = {
@@ -29,20 +32,32 @@ const MainContextProvider = ({ children }) => {
     
     
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: 'https://api.themoviedb.org/3/search/movie',
-        params: {query: 'a', include_adult: 'false', language: 'it-IT', page: '1'},
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjM5ODIzNGUzODYzYTQ0MWRkZDQyZjZmMjU1MmZlOCIsIm5iZiI6MTczNjg0NDM3OC45MDgsInN1YiI6IjY3ODYyNDVhYmQ3OTNjMDM1NDRlZjRiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6xTjc29zsvFHyDvYg025GsXFvcdKitBKqiEOwrpMlkU'
-        }
-    };
+        const optionsMoviesTV = {
+            url: API_URL,
+            params: {
+                api_key: API_KEY,
+                query: "a",
+            }
+        };
+        
+    
 
-        axios
-            .request(options)
-            .then(res => console.log(res.data))
-            .catch(err => console.error(err));
+        Promise.all([
+            axios.get(optionsMoviesTV.url + '/search/movie', optionsMoviesTV),
+            axios.get(optionsMoviesTV.url + '/search/tv', optionsMoviesTV),
+        ])
+            .then(([resMovie, resSeries]) => {
+                setMovies(resMovie.data.results);
+                setSeries(resSeries.data.results);
+                console.log(movies, series);
+            })
+            .catch((err) => {
+                console.error("errore:", err);
+                setError("Failed to fetch media data.");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
 
