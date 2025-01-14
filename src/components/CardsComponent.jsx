@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { MainContext } from "../context/MainContext";
 
-function CardsComponent() {
-    const { movies, loading, error } = useContext(MainContext);
+function CardsComponent({ dataType }) {
+    const { movies, series, loading, error } = useContext(MainContext);
     const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
     const scrollContainer = useRef(null);
@@ -28,11 +28,19 @@ function CardsComponent() {
             {/* Horizontal scrolling container */}
             <div className="overflow-x-auto scrollbar-hide" ref={scrollContainer}>
                 <div className="flex space-x-6 py-4">
-                    {movies.map((movie) => (
-                        <div key={movie.id} className="shrink-0 w-64">
-                            <img src={IMG_PATH + movie.poster_path} alt="movie image" className="rounded-lg" />
-                        </div>
-                    ))}
+                  {dataType === "film" ? (
+                      movies.map((movie) => (
+                          <div key={movie.id} className="shrink-0 w-64">
+                              <img src={IMG_PATH + movie.poster_path} alt="movie image" className="rounded-lg" />
+                          </div>
+                      ))
+                   ) : (
+                      series.map((serie) => (
+                         <div key={serie.id} className="shrink-0 w-64">
+                             <img src={IMG_PATH + serie.poster_path} alt="serie image" className="rounded-lg" />
+                          </div>
+                      ))
+                   )}
                 </div>
             </div>
 
