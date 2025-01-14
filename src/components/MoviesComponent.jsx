@@ -1,14 +1,14 @@
 import React from 'react'
 import CardsComponent from './CardsComponent'
 
-function FilmComponent() {
+function Moviesomponent() {
   return (
     <section>
       <h2 className='font-bold text-white text-3xl mb-5'>Movies</h2>
-      <CardsComponent />
+      <CardsComponent dataType={'film'}/>
     </section>
 
   )
 }
 
-export default FilmComponent
+export default Moviesomponent
