@@ -2,7 +2,7 @@ import React from 'react'
 
 function FilmComponent() {
   return (
-    <div>FilmComponent</div>
+    <h2 className='font-bold text-white text-3xl'>Movies</h2>
   )
 }
 
