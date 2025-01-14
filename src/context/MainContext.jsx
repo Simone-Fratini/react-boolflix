@@ -52,7 +52,7 @@ const MainContextProvider = ({ children }) => {
                 console.log(movies, series);
             })
             .catch((err) => {
-                console.error("errore:", err);
+                console.error("error:", err);
                 setError("Failed to fetch media data.");
             })
             .finally(() => {

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function HeaderComponent() {
     const handleSubmit = (event) => {
         event.preventDefault(); 
@@ -12,10 +13,10 @@ function HeaderComponent() {
     };
 
     return (
-        <header className='bg-black text-white'>
+        <header className='bg-black text-white border-b-2 border-red-600'>
             <div className='container mx-auto p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
                 {/* Titolo */}
-                <h1 className='text-4xl font-bold text-red-600'>BOOLFLIX</h1>
+                <img src="/netlixLogo.png" alt="Netflix Logo" className="w-32 h-auto" />
                 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className='flex items-center flex-col gap-4 mt-4 md:mt-0 md:flex-row'>
