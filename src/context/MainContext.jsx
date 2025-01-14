@@ -12,6 +12,8 @@ const MainContextProvider = ({ children }) => {
     const [selectedGenre, setSelectedGenre] = useState("all");
 
     
+
+    
     const contextValue = {
         movies,
         setMovies,
