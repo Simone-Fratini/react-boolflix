@@ -1,14 +1,24 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { MainContextProvider } from "./contexts/MainContext";
+
+// Layout on utilizzato
+import DefaultLayout from './pages/DefaultLayout';
+
+// Pages
+import HomePage from './pages/HomePage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1 className='text-center text-red-400 text-7xl pt-10'>Template React</h1>
-    </>
-  )
+    <MainContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </MainContextProvider>
+  );
 }
 
-export default App
+export default App;
