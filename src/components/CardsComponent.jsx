@@ -44,6 +44,9 @@ function CardsComponent({ dataType }) {
                 </div>
             </div>
 
+            {/* overlay faded right */}
+            <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-black to-transparent"></div>
+
             {/* Right scroll button */}
             <button className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-5 rounded-l-lg hover:bg-black/80 z-10" onClick={scrollRight}>
                 &rarr;

@@ -1,7 +1,11 @@
 import React from 'react';
-
+import { useContext } from 'react';
+import { MainContext } from '../context/MainContext';
 
 function HeaderComponent() {
+
+    const { setSearch, setSelectedGenre } = useContext(MainContext);
+
     const handleSubmit = (event) => {
         event.preventDefault(); 
         const formData = new FormData(event.target);
@@ -9,7 +13,8 @@ function HeaderComponent() {
         const search = formData.get("search");
         console.log("Genere ", genre);
         console.log("campodi ricerca:", search);
-        
+        setSelectedGenre(genre);
+        setSearch(search);
     };
 
     return (

@@ -36,7 +36,7 @@ const MainContextProvider = ({ children }) => {
             url: API_URL,
             params: {
                 api_key: API_KEY,
-                query: "a",
+                query: search || "a",
             }
         };
         
@@ -58,7 +58,7 @@ const MainContextProvider = ({ children }) => {
             .finally(() => {
                 setLoading(false);
             });
-    }, []);
+    }, [ search ]);
 
 
     return (
