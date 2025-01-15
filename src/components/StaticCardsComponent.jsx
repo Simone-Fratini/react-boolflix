@@ -14,7 +14,7 @@ function StaticCardsComponent() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {allItems.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="mt-8">
             <img
               src={IMG_PATH + item.poster_path}
               alt={item.title || "Item image"}
