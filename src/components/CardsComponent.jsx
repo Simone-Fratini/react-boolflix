@@ -1,12 +1,18 @@
 import React, { useContext, useRef } from "react";
 import { MainContext } from "../context/MainContext";
 import starRating from "../utilities/starRating";
+import languageFlags from "../data/languagesFlags";
 
 function CardsComponent({ dataType }) {
   const { movies, series, loading, error } = useContext(MainContext);
   const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
   const scrollContainer = useRef(null);
+
+  const getFlagUrl = (langCode) => {
+    const countryCode = languageFlags[langCode] || "US";
+    return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`;
+  };
 
   if (loading) return <p className="text-white">Loading...</p>; // to do! work on loading spinner
   if (error) return <p className="text-red-500">{error}</p>;
@@ -43,14 +49,18 @@ function CardsComponent({ dataType }) {
                 className="rounded-lg"
               />
               {/* Overlay details */}
-              <div className="absolute inset-0 bg-black/70 flex flex-col items-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+              <div className="absolute inset-0 bg-black/70 flex flex-col p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                 <h3 className="text-white text-lg font-semibold text-center">
                   {item.original_title || item.original_name}
                 </h3>
-                <div className="pt-3">
+                <div className="text-white text-md pt-3 flex justify-center">
+                    <img className="w-10 h-10" src={getFlagUrl(item.original_language)} alt={item.original_language} />
+                </div>
+                <div className="pt-3 flex justify-center">
                     {starRating(item.vote_average)}
                 </div>
-                <p className="text-gray-300 text-sm text-center overflow-hidden">{item.overview}</p>
+                <div className="text-white text-bold text-md pt-3">Description:</div>
+                <p className="text-gray-300 text-sm overflow-hidden">{item.overview}</p>
               </div>
             </div>
           ))}
