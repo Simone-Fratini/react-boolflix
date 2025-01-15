@@ -17,6 +17,11 @@ function HeaderComponent() {
         setSearch(search);
     };
 
+    const HandleClearSearch = () => {
+        setSearch("");
+        setSelectedGenre("all");
+    };
+
     return (
         <header className='bg-black text-white border-b-2 border-red-600 sticky top-0 z-20'>
             <div className='ml-5 mr-5 p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
@@ -26,7 +31,8 @@ function HeaderComponent() {
                     <nav className='pl-12'>
                         <ul className='flex items-center gap-4 text-gray-300'>
                             <li>
-                                <a href="#" className='hover:text-red-600'>Home</a>
+                                {/*<a href="#" className='hover:text-red-600'>Home</a>*/}
+                                <div className='hover:text-red-600 cursor-pointer' onClick={HandleClearSearch}>Home</div>
                             </li>
                             <li>
                                 <a href="#" className='hover:text-red-600'>Movies</a>

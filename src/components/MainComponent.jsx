@@ -13,12 +13,12 @@ function MainComponent() {
       
       {search.length > 0 ? (
         <>
-          <h2 className="text-white text-2xl mb-4">Risultati per: {search}</h2>
+          <h2 className="text-white text-2xl mb-4 mt-8 pl-4 ml-4">Risultati per: {search}</h2>
           <StaticCardsComponent />
         </>
       ) : (
         <div >
-          <HeroComponent />
+          <HeroComponent videoSrc={"./interstellar.mp4"} heroSrc={"./interstellarHero.png"} logoSrc="./interstellar.png"/>
           <div className="pl-4 pr-4 ml-4 mr-4">
             <MoviesComponent />
             <SeriesComponent />

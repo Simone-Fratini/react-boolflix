@@ -6,7 +6,7 @@ import { FaVolumeHigh } from "react-icons/fa6";
 import { BsArrowRepeat } from "react-icons/bs";
 
 
-function HeroComponent() {
+function HeroComponent({ videoSrc, heroSrc, logoSrc }) {
     const [isMuted, setIsMuted] = useState(true);
       const [showHero, setShowHero] = useState(false);
       const videoRef = useRef(null);
@@ -28,10 +28,10 @@ function HeroComponent() {
 
   return (
     <div className="relative w-full h-[60vh] md:h-[750px]">
-        <video ref={videoRef} className="w-full h-full object-cover absolute" src="./interstellar.mp4" autoPlay muted={isMuted} onEnded={VideoEnd}></video>
+        <video ref={videoRef} className="w-full h-full object-cover absolute" src={videoSrc} autoPlay muted={isMuted} onEnded={VideoEnd}></video>
 
         <div className="absolute left-4 bottom-20 sm:bottom-32 md:bottom-52 opacity-75 z-10">
-          <img className="w-1/2 sm:w-1/3 md:w-1/2 lg:w-[500px]" src="./interstellar.png" alt="" />
+          <img className="w-1/2 sm:w-1/3 md:w-1/2 lg:w-[500px]" src={logoSrc} alt="" />
         </div>
 
         {/* fading overlay */}
@@ -53,7 +53,7 @@ function HeroComponent() {
         {/* Hero Image */}
         {showHero && (
           <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-            <img src="./interstellarHero.png" alt="Hero" className="w-full h-full object-cover"/>
+            <img src={heroSrc} alt="Hero" className="w-full h-full object-cover"/>
             <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-b from-transparent to-black"></div>
           </div>
         )}

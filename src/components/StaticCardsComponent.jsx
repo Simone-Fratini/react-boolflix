@@ -17,7 +17,7 @@ function StaticCardsComponent() {
   const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
   return (
-    <div className="p-4">
+    <div className="p-4 ml-4 mr-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {allItems.map((item) => (
           <div key={item.id} className="relative group">
