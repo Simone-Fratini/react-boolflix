@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { MainContext } from "../context/MainContext";
+import starRating from "../utilities/starRating";
 
 function CardsComponent({ dataType }) {
   const { movies, series, loading, error } = useContext(MainContext);
@@ -46,7 +47,8 @@ function CardsComponent({ dataType }) {
                 <h3 className="text-white text-lg font-semibold text-center">
                   {item.original_title || item.original_name}
                 </h3>
-                <div>
+                <div className="flex space-x-1">
+                    <span className="text-yellow-400">{starRating(item.vote_average)}</span>
                     
                 </div>
                 <p className="text-gray-300 text-sm text-center overflow-hidden">{item.overview}</p>

@@ -1,28 +1,26 @@
-
 import { IoIosStar } from "react-icons/io";
 import { FaStarHalf } from "react-icons/fa";
 
+function starRating(rating) {
+ 
+  const ratingFive = rating / 2;
+  const fullStars = Math.floor(ratingFive);
+  const halfStar = ratingFive - fullStars >= 0.5;
+  const stars = [];
 
-function starRating( rating ){
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const HalfStar = false;
+  for (let i = 0; i < fullStars; i++) {
+    stars.push(<IoIosStar key={i} />);
+  }
 
-    let floatingPart = rating.split(".")[1];
+  if (halfStar && fullStars < 5) {
+    stars.push(<FaStarHalf key="halfstar" />);
+  }
 
-    if(floatingPart >= 5){
-        HalfStar = true;
-    }
-
-    for(let i = 0; i < fullStars; i++){
-        stars.push(<IoIosStar key={i} />);
-    }
-
-    if(HalfStar){
-        stars.push(<FaStarHalf key={fullStars} />);
-    }
-
-    return stars; 
+  return (
+    <div className="inline-flex items-center space-x-1 text-yellow-400">
+      {stars}
+    </div>
+  );
 }
 
 export default starRating;
