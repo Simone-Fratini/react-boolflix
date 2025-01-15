@@ -59,7 +59,7 @@ function CardsComponent({ dataType }) {
                 <div className="pt-3 flex justify-center">
                     {starRating(item.vote_average)}
                 </div>
-                <div className="text-white text-bold text-md pt-3">Description:</div>
+                <div className="text-white font-bold text-sm pt-3">Description:</div>
                 <p className="text-gray-300 text-sm overflow-hidden">{item.overview}</p>
               </div>
             </div>
