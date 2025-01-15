@@ -19,9 +19,31 @@ function HeaderComponent() {
 
     return (
         <header className='bg-black text-white border-b-2 border-red-600 sticky top-0 z-10'>
-            <div className='container mx-auto p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
-                {/* Titolo */}
-                <img src="/netlixLogo.png" alt="Netflix Logo" className="w-32 h-auto" />
+            <div className='ml-5 mr-5 p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
+                {/* Logo */}
+                <div className='flex gap-4'>
+                    <img src="/netlixLogo.png" alt="Netflix Logo" className="w-24 h-auto" />
+                    <nav className='pl-12'>
+                        <ul className='flex items-center gap-4 text-gray-300'>
+                            <li>
+                                <a href="#" className='hover:text-red-600'>Home</a>
+                            </li>
+                            <li>
+                                <a href="#" className='hover:text-red-600'>Movies</a>
+                            </li>
+                            <li>
+                                <a href="#" className='hover:text-red-600'>Series</a>
+                            </li>
+                            <li>
+                                <a href="#" className='hover:text-red-600'>New & Popular</a>
+                            </li>
+                            <li>
+                                <a href="#" className='hover:text-red-600'>My List</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
                 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className='flex items-center flex-col gap-4 mt-4 md:mt-0 md:flex-row'>
