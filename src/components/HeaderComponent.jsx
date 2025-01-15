@@ -18,7 +18,7 @@ function HeaderComponent() {
     };
 
     return (
-        <header className='bg-black text-white border-b-2 border-red-600'>
+        <header className='bg-black text-white border-b-2 border-red-600 sticky top-0 z-10'>
             <div className='container mx-auto p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
                 {/* Titolo */}
                 <img src="/netlixLogo.png" alt="Netflix Logo" className="w-32 h-auto" />
