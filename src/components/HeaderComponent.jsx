@@ -18,7 +18,7 @@ function HeaderComponent() {
     };
 
     return (
-        <header className='bg-black text-white border-b-2 border-red-600 sticky top-0 z-10'>
+        <header className='bg-black text-white border-b-2 border-red-600 sticky top-0 z-20'>
             <div className='ml-5 mr-5 p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between'>
                 {/* Logo */}
                 <div className='flex gap-4'>
