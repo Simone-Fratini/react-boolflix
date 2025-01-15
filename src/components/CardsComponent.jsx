@@ -4,7 +4,7 @@ import starRating from "../utilities/starRating";
 import languageFlags from "../data/languagesFlags";
 
 function CardsComponent({ dataType }) {
-  const { movies, series, loading, error } = useContext(MainContext);
+  const { movies, series, trendingFilms, UpcomingMovies, TopRatedMovies, loading, error } = useContext(MainContext);
   const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
   const scrollContainer = useRef(null);
@@ -16,6 +16,26 @@ function CardsComponent({ dataType }) {
 
   if (loading) return <p className="text-white">Loading...</p>; // to do! work on loading spinner
   if (error) return <p className="text-red-500">{error}</p>;
+
+  function getData(){
+    switch (dataType) {
+      case "movies":
+        return movies;
+      case "series":
+        return series;
+      case "trending":
+        return trendingFilms;
+      case "upcomingMovies":
+        return UpcomingMovies;
+      case "topRatedMovies":
+        return TopRatedMovies;
+      default:
+        return [];
+    }
+  };
+
+  const data = getData();
+
 
   const scrollLeft = () => {
     scrollContainer.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -38,16 +58,10 @@ function CardsComponent({ dataType }) {
       {/* Horizontal scrolling container */}
       <div className="overflow-x-auto scrollbar-hide" ref={scrollContainer}>
         <div className="flex space-x-6 py-4">
-          {(dataType === "film" ? movies : series).map((item) => (
-            <div
-              key={item.id}
-              className="shrink-0 w-64 group relative transform transition-transform duration-300 hover:scale-105"
-            >
-              <img
-                src={IMG_PATH + item.poster_path}
-                alt={`${item.title || item.name} image`}
-                className="rounded-lg"
-              />
+          {data.map((item) => (
+            <div key={item.id} className="shrink-0 w-64 group relative transform transition-transform duration-300 hover:scale-105">
+              <img src={IMG_PATH + item.poster_path} alt={`${item.title || item.name} image`} className="rounded-lg"/>
+
               {/* Overlay details */}
               <div className="absolute inset-0 bg-black/70 flex flex-col p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                 <h3 className="text-white text-lg font-semibold text-center">

@@ -87,7 +87,8 @@ const MainContextProvider = ({ children }) => {
                 setMovies(resMovie.data.results);
                 setSeries(resSeries.data.results);
                 setTrendingFilms(resTrendingMovies.data.results);
-                setUpcomingMovies(resTopRatedMovies.data.results);
+                setUpcomingMovies(resUpcomingMovies.data.results);
+                setTopRatedMovies(resTopRatedMovies.data.results);
                 console.log(TopRatedMovies);
             })
             .catch((err) => {
