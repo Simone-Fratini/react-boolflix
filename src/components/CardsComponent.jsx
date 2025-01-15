@@ -47,9 +47,8 @@ function CardsComponent({ dataType }) {
                 <h3 className="text-white text-lg font-semibold text-center">
                   {item.original_title || item.original_name}
                 </h3>
-                <div className="flex space-x-1">
-                    <span className="text-yellow-400">{starRating(item.vote_average)}</span>
-                    
+                <div className="pt-3">
+                    {starRating(item.vote_average)}
                 </div>
                 <p className="text-gray-300 text-sm text-center overflow-hidden">{item.overview}</p>
               </div>
