@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
-import MoviesComponent from "./MoviesComponent";
-import SeriesComponent from "./SeriesComponent";
+import HomeMainComponent from "./HomeMainComponent";
 import StaticCardsComponent from "./StaticCardsComponent";
 import HeroComponent from "./HeroComponent";
 import { MainContext } from "../context/MainContext";
@@ -20,8 +19,7 @@ function MainComponent() {
         <div >
           <HeroComponent videoSrc={"./interstellar.mp4"} heroSrc={"./interstellarHero.png"} logoSrc="./interstellar.png"/>
           <div className="pl-4 pr-4 ml-4 mr-4">
-            <MoviesComponent />
-            <SeriesComponent />
+            <HomeMainComponent />
           </div>
         </div>
       )}
