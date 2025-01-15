@@ -6,6 +6,9 @@ const MainContext = createContext();
 const MainContextProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     const [series, setSeries] = useState([]);
+    const [trendingFilms, setTrendingFilms] = useState([]);
+    const [UpcomingMovies, setUpcomingMovies] = useState([]);
+    const [TopRatedMovies, setTopRatedMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
@@ -20,6 +23,12 @@ const MainContextProvider = ({ children }) => {
         setMovies,
         series,
         setSeries,
+        trendingFilms,
+        setTrendingFilms,
+        UpcomingMovies,
+        setUpcomingMovies,
+        TopRatedMovies,
+        setTopRatedMovies,
         loading,
         setLoading,
         error,
@@ -39,17 +48,47 @@ const MainContextProvider = ({ children }) => {
                 query: search || "a",
             }
         };
+        const optionsTrendingMovies = {
+            url: API_URL,
+            params: {
+                params: {language: 'en-US'},
+                api_key: API_KEY,
+        
+            }
+        };
+        const optionsUpcomingMovies = {
+            url: API_URL,
+            params: {
+                params: {language: 'en-US', page: '1'},
+                api_key: API_KEY,
+        
+            }
+        };
+
+        const optionsTopRatedMovies = {
+            url: API_URL,
+            params: {
+                params: {language: 'en-US', page: '1'},
+                api_key: API_KEY,
+        
+            }
+        };
         
     
 
         Promise.all([
             axios.get(optionsMoviesTV.url + '/search/movie', optionsMoviesTV),
             axios.get(optionsMoviesTV.url + '/search/tv', optionsMoviesTV),
+            axios.get(optionsMoviesTV.url + '/trending/movie/week', optionsTrendingMovies),
+            axios.get(optionsMoviesTV.url + '/movie/upcoming', optionsUpcomingMovies),
+            axios.get(optionsMoviesTV.url + '/movie/top_rated', optionsTopRatedMovies),
         ])
-            .then(([resMovie, resSeries]) => {
+            .then(([resMovie, resSeries, resTrendingMovies, resUpcomingMovies, resTopRatedMovies]) => {
                 setMovies(resMovie.data.results);
                 setSeries(resSeries.data.results);
-                console.log(movies);
+                setTrendingFilms(resTrendingMovies.data.results);
+                setUpcomingMovies(resTopRatedMovies.data.results);
+                console.log(TopRatedMovies);
             })
             .catch((err) => {
                 console.error("error:", err);

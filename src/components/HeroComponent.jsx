@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 {/* Icons */}
 import { FaVolumeMute } from "react-icons/fa";
 import { FaVolumeHigh } from "react-icons/fa6";
-import { BsArrowRepeat } from "react-icons/bs";
+import { BsArrowRepeat } from "react-icons/bs"; // TODO!!!! repeat Video
 
 
 function HeroComponent({ videoSrc, heroSrc, logoSrc }) {
